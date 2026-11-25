@@ -1,11 +1,31 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Gestão de alunos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="script.js">
   </head>
   <body>
-    <h1>Richard</h1>
+    <form action="">
+      <label for="nome">Nome</label>
+      <input type="text" id="nome" name="nome"><br>
+      <label for="idade">Idade</label>
+      <input type="number" id="idade" name="idade"><br>
+      <label for="turma">Turma</label>
+      <select name="turma" id="turma">
+        <option value="">Escolha a turma</option>
+        <option value="1a">1°A</option>
+        <option value="1b">1°B</option>
+      </select><br>
+      <label for="nota">Nota 1</label>
+      <input type="text" id="nota1" name="nota"><br>
+      <label for="nota">Nota 2</label>
+      <input type="text" id="nota2" name="nota"><br>
+
+      <button type="submit">Enviar</button>
+      <button type="reset">Limpar</button>
+    </form>
   </body>
 </html>
