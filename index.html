@@ -239,6 +239,16 @@ ul#lista li button:hover {
         event.preventDefault();
 
         const nomeDigitado = nome.value.trim();
+   for(let i = 0; i < alunosListas.length;i++){
+    if(alunosListas[i].nome === nomeDigitado && alunosListas[i].turma === turma.value){
+      alerta.textContent = "Esse aluno ja Pertence a essa turma"
+      return
+    }
+   }
+alunosListas.push({
+    nome: nomeDigitado,
+    turma: turma.value
+});
 
         const valorNota1 = Number(nota1.value);
         const valorNota2 = Number(nota2.value);
