@@ -5,71 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gestão de alunos</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="script.js" />
     <style>
-      .aprovado {
+      .verde {
         color: green;
       }
-      .reprovado {
+
+      .vermelho {
         color: red;
       }
     </style>
   </head>
   <body>
-    <form action="" id="formulario">
-      <label for="nome">Nome</label>
-      <input required type="text" id="nome" name="nome" /><br />
+    <div class="mae">
+      <form action="" id="formulario">
+        <label for="nome">Nome</label>
+        <input required type="text" id="nome" name="nome" /><br />
 
-      <label for="idade">Idade</label>
-      <input
-        required
-        min="0"
-        max="120"
-        type="number"
-        id="idade"
-        name="idade"
-      /><br />
+        <label for="idade">Idade</label>
+        <input
+          required
+          min="0"
+          max="120"
+          type="number"
+          id="idade"
+          name="idade"
+        /><br />
 
-      <label for="turma">Turma</label>
-      <select name="" id="turma" required>
-        <option value="">Escolha a turma</option>
-        <option value="1a">1°A</option>
-        <option value="1b">1°B</option></select
-      ><br />
+        <label for="turma">Turma</label>
+        <select name="" id="turma" required>
+          <option value="">Escolha a turma</option>
+          <option value="1a">1°A</option>
+          <option value="1b">1°B</option></select
+        ><br />
 
-      <label for="nota1">Nota 1</label>
-      <input
-        required
-        type="number"
-        id="nota1"
-        name="nota1"
-        step="0.1"
-        min="0"
-        max="10"
-      /><br />
+        <label for="nota1">Nota 1</label>
+        <input
+          required
+          type="number"
+          id="nota1"
+          name="nota1"
+          step="0.1"
+          min="0"
+          max="10"
+        /><br />
 
-      <label for="nota2">Nota 2</label>
-      <input
-        required
-        type="number"
-        id="nota2"
-        name="nota2"
-        step="0.1"
-        min="0"
-        max="10"
-      /><br />
+        <label for="nota2">Nota 2</label>
+        <input
+          required
+          type="number"
+          id="nota2"
+          name="nota2"
+          step="0.1"
+          min="0"
+          max="10"
+        /><br />
 
-      <button type="submit">Enviar</button>
-      <button type="reset">Limpar</button>
-    </form>
-    <p id="alerta"></p>
+        <button type="submit">Enviar</button>
+        <button type="reset">Limpar</button>
+      </form>
+      <p id="alerta"></p>
 
-    <p id="total">Total de Alunos 0</p>
-    <p id="reprovados">Total de Reprovados 0</p>
-    <p id="aprovados">Total de Aprovados 0</p>
-    <p>Alunos Cadastrados</p>
-    <ul id="lista"></ul>
+      <p id="total">Total de Alunos 0</p>
+      <p id="reprovados">Total de Reprovados 0</p>
+      <p id="aprovados">Total de Aprovados 0</p>
+      <p>Alunos Cadastrados</p>
+      <ul id="lista"></ul>
+    </div>
     <script>
+      
       const formulario = document.querySelector("#formulario");
       const nome = document.querySelector("#nome");
       const idade = document.querySelector("#idade");
@@ -85,6 +88,7 @@
       let alunosReprovados = 0;
       let alunosAprovados = 0;
       let alunosTotal = 0;
+const alunosListas = []
       formulario.addEventListener("submit", (event) => {
         event.preventDefault();
 
@@ -94,18 +98,22 @@
         const valorNota2 = Number(nota2.value);
         const media = (valorNota1 + valorNota2) / 2;
 
+        const item = document.createElement("li");
+
         let situacao = "";
+
         if (media >= 7) {
           situacao = "aprovado";
           alunosAprovados++;
+          item.classList.add("verde");
         } else {
           situacao = "reprovado";
           alunosReprovados++;
+          item.classList.add("vermelho");
         }
 
         alunosTotal++;
 
-        const item = document.createElement("li");
         item.textContent =
           "Nome: " +
           nome.value +
@@ -121,13 +129,15 @@
           media +
           " - situação: " +
           situacao;
+
         const btn = document.createElement("button");
         btn.textContent = "remover";
 
-        btn.addEventListener("click", function () {
+        btn.addEventListener("click", () => {
           item.remove();
 
           let situacao = "";
+
           if (media >= 7) {
             situacao = "aprovado";
             alunosAprovados--;
@@ -138,16 +148,22 @@
 
           alunosTotal--;
 
+          if (alunosTotal === 0) {
+            alerta.textContent = "Voce retirou todos os alunos meu amigo ";
+          }
+
           total.textContent = "Total de Alunos " + alunosTotal;
           aprovados.textContent = "Total de Aprovados " + alunosAprovados;
           reprovados.textContent = "Total de Reprovados " + alunosReprovados;
         });
-        item.appendChild(btn);
 
+        item.appendChild(btn);
         lista.appendChild(item);
+
         total.textContent = "Total de Alunos " + alunosTotal;
         aprovados.textContent = "Total de Aprovados " + alunosAprovados;
         reprovados.textContent = "Total de Reprovados " + alunosReprovados;
+        alerta.textContent = "";
       });
     </script>
   </body>
