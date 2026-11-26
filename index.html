@@ -6,73 +6,219 @@
     <title>Gestão de alunos</title>
     <link rel="stylesheet" href="style.css" />
     <style>
-      .verde {
-        color: green;
-      }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-      .vermelho {
-        color: red;
-      }
+body {
+  font-family: monospace;
+  background-color: #f4f6f9;
+  color: #1f2937;
+  padding: 24px;
+}
+
+.mae {
+  display: flex;
+  justify-content: center;
+}
+
+.filha {
+  width: 100%;
+  max-width: 720px;
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  font-size: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  margin-top: 4px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background-color: #f8fafc;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #2563eb;
+  background-color: #ffffff;
+}
+
+#nome {
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+}
+
+button {
+  padding: 10px 16px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button[type="submit"] {
+  background-color: #2563eb;
+  color: #ffffff;
+  margin-top: 8px;
+}
+
+button[type="submit"]:hover {
+  background-color: #1d4ed8;
+}
+
+button[type="reset"] {
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
+
+button[type="reset"]:hover {
+  background-color: #cbd5e1;
+}
+
+#alerta {
+  font-weight: bold;
+  color: #b45309;
+  margin: 12px 0;
+}
+
+#total,
+#reprovados,
+#aprovados {
+  font-weight: bold;
+  margin: 6px 0;
+}
+
+ul#lista {
+  list-style: none;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+
+ul#lista li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  font-size: 0.95rem;
+}
+
+ul#lista li button {
+  background-color: #ef4444;
+  color: #ffffff;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+ul#lista li button:hover {
+  background-color: #dc2626;
+}
+
+.verde {
+  color: #15803d;
+  border-color: #86efac;
+  background-color: #f0fdf4;
+}
+
+.vermelho {
+  color: #b91c1c;
+  border-color: #fca5a5 ;
+  background-color: #fef2f2 ;
+}
+
     </style>
   </head>
   <body>
     <div class="mae">
-      <form action="" id="formulario">
-        <label for="nome">Nome</label>
-        <input required type="text" id="nome" name="nome" /><br />
+      <div class="filha">
+        <form action="" id="formulario">
+          <label for="nome">Nome</label>
+          <input required type="text" id="nome" name="nome" /><br />
 
-        <label for="idade">Idade</label>
-        <input
-          required
-          min="0"
-          max="120"
-          type="number"
-          id="idade"
-          name="idade"
-        /><br />
+          <label for="idade">Idade</label>
+          <input
+            required
+            min="0"
+            max="120"
+            type="number"
+            id="idade"
+            name="idade"
+          /><br />
 
-        <label for="turma">Turma</label>
-        <select name="" id="turma" required>
-          <option value="">Escolha a turma</option>
-          <option value="1a">1°A</option>
-          <option value="1b">1°B</option></select
-        ><br />
+          <label for="turma">Turma</label>
+          <select name="" id="turma" required>
+            <option value="">Escolha a turma</option>
+            <option value="1a">1°A</option>
+            <option value="1b">1°B</option></select
+          ><br />
 
-        <label for="nota1">Nota 1</label>
-        <input
-          required
-          type="number"
-          id="nota1"
-          name="nota1"
-          step="0.1"
-          min="0"
-          max="10"
-        /><br />
+          <label for="nota1">Nota 1</label>
+          <input
+            required
+            type="number"
+            id="nota1"
+            name="nota1"
+            step="0.1"
+            min="0"
+            max="10"
+          /><br />
 
-        <label for="nota2">Nota 2</label>
-        <input
-          required
-          type="number"
-          id="nota2"
-          name="nota2"
-          step="0.1"
-          min="0"
-          max="10"
-        /><br />
+          <label for="nota2">Nota 2</label>
+          <input
+            required
+            type="number"
+            id="nota2"
+            name="nota2"
+            step="0.1"
+            min="0"
+            max="10"
+          /><br />
 
-        <button type="submit">Enviar</button>
-        <button type="reset">Limpar</button>
-      </form>
-      <p id="alerta"></p>
+          <button type="submit">Enviar</button>
+          <button type="reset">Limpar</button>
+        </form>
+        <p id="alerta"></p>
 
-      <p id="total">Total de Alunos 0</p>
-      <p id="reprovados">Total de Reprovados 0</p>
-      <p id="aprovados">Total de Aprovados 0</p>
-      <p>Alunos Cadastrados</p>
-      <ul id="lista"></ul>
+        <p id="total">Total de Alunos 0</p>
+        <p id="reprovados">Total de Reprovados 0</p>
+        <p id="aprovados">Total de Aprovados 0</p>
+        <p>Alunos Cadastrados</p>
+        <ul id="lista"></ul>
+      </div>
     </div>
     <script>
-      
       const formulario = document.querySelector("#formulario");
       const nome = document.querySelector("#nome");
       const idade = document.querySelector("#idade");
@@ -88,7 +234,7 @@
       let alunosReprovados = 0;
       let alunosAprovados = 0;
       let alunosTotal = 0;
-const alunosListas = []
+      const alunosListas = [];
       formulario.addEventListener("submit", (event) => {
         event.preventDefault();
 
